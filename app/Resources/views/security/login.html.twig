@@ -1,0 +1,60 @@
+{# app/Resources/views/security/login.html.twig #}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="../../favicon.ico">
+
+        <title>{% block title %}Welcome!{% endblock %}</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+        {% stylesheets 'bundles/app/css/login.css' filter='cssrewrite' %}
+        <link href="{{ asset_url }}" rel="stylesheet">
+        {% endstylesheets %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+
+<body>
+    <div class="container">
+        {% if error %}
+            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        <form action="{{ path('login') }}" method="post" class="form-signin">
+            <h2 class="form-signin-heading">Моля въведете имейл и парола</h2>
+            <div class="form-group">
+                <label for="username" class="sr-only">Имейл:</label>
+                <input type="text" id="email" name="_email" value="" class="form-control" placeholder="Имейл" required autofocus/>
+            </div>
+            <div class="form-group">
+                <label for="password" class="sr-only">Парола:</label>
+                <input type="password" id="password" name="_password" class="form-control" placeholder="Парола" required/>
+            </div>
+            {#
+                If you want to control the URL the user
+                is redirected to on success (more details below)
+                <input type="hidden" name="_target_path" value="/account" />
+            #}
+            <input type="hidden" name="_target_path" value="/" />
+
+            <button class="btn btn-lg btn-primary" type="submit">Влез</button>
+            <a href="/register" class="btn btn-lg btn-default" role="button">Регистрирай се</a>
+        </form>
+    </div> <!-- /container -->
+
+{% block javascripts %}{% endblock %}
+
+</body>
+</html>
+
+    
+    
+    
+
+
